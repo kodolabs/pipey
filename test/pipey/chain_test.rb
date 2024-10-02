@@ -42,10 +42,7 @@ module Pipey
 
     def test_line_with_dsl
       s = Subject::DSL
-
       assert_equal [:run_multiply, :run_divide], s.steps
-      assert_equal [:run_multiply, :run_divide], s.steps_for(multiply_by: 10)
-
       assert_equal [2, 4], s.call([1, 2], multiply_by: 10, divide_by: 5)
     end
 

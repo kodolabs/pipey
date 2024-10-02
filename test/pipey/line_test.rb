@@ -40,7 +40,7 @@ module Pipey
     class Stopper < Pipey::Chain
       extend Pipey::Steps::Scanner[/^run_/]
 
-      def run_stop(_, **)
+      def run_stop(**)
         stop! 100
         200
       end
@@ -48,7 +48,7 @@ module Pipey
 
     def test_line_with_dsl
       assert_equal [:run_multiply, :run_divide], Subject::DSL.steps
-      assert_equal 2, Subject::DSL.call(1)
+      assert_equal 2, Subject::DSL.call(1, multiply_by: 10)
     end
 
     def test_line_with_scanner

@@ -10,13 +10,13 @@ module Pipey
       end
     end
 
-    def stop!(*args)
-      throw(:__pipey_stop, *args)
+    def stop!(*args, **kwargs)
+      throw(:__pipey_stop, *args, **kwargs)
     end
 
-    def call(*args)
+    def call(**args)
       catch :__pipey_stop do
-        clone.call!(*args)
+        clone.call!(**args)
       end
     end
   end

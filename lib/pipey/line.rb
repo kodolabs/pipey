@@ -4,13 +4,13 @@ module Pipey
   class Line
     include Core
 
-    def self.call(*args)
-      new.call(*args)
+    def self.call(initial, **opts)
+      new.call!(initial, **opts)
     end
 
-    def call!(initial, opts = {})
-      self.class.steps_for(opts).reduce(initial) do |value, name|
-        result = send(name, value, opts)
+    def call!(initial, **opts)
+      self.class.steps_for(**opts).reduce(initial) do |value, name|
+        result = send(name, value, **opts)
 
         if self.class.valid_pipe_result?(result)
           result

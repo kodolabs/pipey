@@ -5,7 +5,7 @@ module Pipey
         @steps ||= []
       end
 
-      def steps_for(_)
+      def steps_for(**_)
         steps
       end
 
@@ -24,7 +24,7 @@ module Pipey
           instance_methods.grep(pattern)
         end
 
-        define_method :steps_for do |_|
+        define_method :steps_for do |**_|
           steps
         end
       end
